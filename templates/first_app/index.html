@@ -1,11 +1,16 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>First App</title>
+    <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
 </head>
 <body>
     <h1>This in my first django powered page</h1>
     <h1>{{ insert_me }}</h1>
+    <h4>You know who I am?</h4>
+    <h5>I'm</h5>
+    <img src="{% static 'images/super_man.jpg' %}">
 </body>
 </html>
