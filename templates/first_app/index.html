@@ -8,9 +8,21 @@
 </head>
 <body>
     <h1>This in my first django powered page</h1>
-    <h1>{{ insert_me }}</h1>
-    <h4>You know who I am?</h4>
-    <h5>I'm</h5>
-    <img src="{% static 'images/super_man.jpg' %}">
+    {% if insert_me %}
+    <table>
+        <thead>
+            <th>name</th>
+            <th>date</th>
+        </thead>
+        {% for element in insert_me %}
+        <tr>
+            <td>{{ element.name }}</td>
+            <td>{{ element.date }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <h1>No site accessed yet</h1>
+    {% endif %}
 </body>
 </html>
