@@ -5,10 +5,13 @@
     <meta charset="UTF-8">
     <title>First App</title>
     <link rel="stylesheet" href="{% static 'css/myStyle.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+    <div class="container">
     <h1>This in my first django powered page</h1>
     {% if insert_me %}
+    <div class="jumbotron">
     <table>
         <thead>
             <th>name</th>
@@ -21,6 +24,9 @@
         </tr>
         {% endfor %}
     </table>
+    </div>
+        <h4>Go to first_app/form to fill out the form!</h4>
+    </div>
     {% else %}
         <h1>No site accessed yet</h1>
     {% endif %}
