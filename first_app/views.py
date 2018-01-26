@@ -5,7 +5,18 @@ from . import forms
 
 def index(request):
     date_access = AccessRecord.objects.order_by('date')
-    my_dict = {'insert_me': date_access}
+    form = forms.FormName()
+    if request.method == 'POST':
+        form = forms.FormName(request.POST)
+        if form.is_valid():
+            print('Validation Success!')
+            print("NAME: " + form.cleaned_data['name'])
+            print("EMAIL: " + form.cleaned_data['email'])
+            print("ABOUT ME: " + form.cleaned_data['about_me'])
+    my_dict = {
+                'insert_me': date_access,
+                'form': form
+              }
     return render(request, 'first_app/index.html', context=my_dict)
 
 
