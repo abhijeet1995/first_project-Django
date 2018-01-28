@@ -20,14 +20,23 @@
         {% for element in insert_me %}
         <tr>
             <td>{{ element.pk }}</td>
-            <td>{{ element.top_name }}</td>
+            <td>{{ element.topic_name }}</td>
         </tr>
         {% endfor %}
     </table>
     </div>
     </div>
     {% else %}
-        <h1>No site accessed yet</h1>
+        <h1>No Topic created yet!</h1>
     {% endif %}
+    <div class="container">
+    <div class="jumbotron">
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+    </div>
+    </div>
 </body>
 </html>

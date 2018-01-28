@@ -2,10 +2,10 @@ from django.db import models
 
 
 class Topic(models.Model):
-    top_name = models.CharField(max_length=240, unique=True)
+    topic_name = models.CharField(max_length=240, unique=True)
 
     def __str__(self):
-        return self.top_name
+        return self.topic_name
 
 
 class WebPage(models.Model):
