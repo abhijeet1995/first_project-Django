@@ -1,33 +1,27 @@
 from django.shortcuts import render
 from first_app.models import Topic, WebPage, AccessRecord
-from . import forms
+from .forms import FormName
 
 
 def index(request):
-    date_access = AccessRecord.objects.order_by('date')
-    form = forms.FormName()
-    if request.method == 'POST':
-        form = forms.FormName(request.POST)
-        if form.is_valid():
-            print('Validation Success!')
-            print("NAME: " + form.cleaned_data['name'])
-            print("EMAIL: " + form.cleaned_data['email'])
-            print("ABOUT ME: " + form.cleaned_data['about_me'])
+    topics = Topic.objects.all()
+
     my_dict = {
-                'insert_me': date_access,
-                'form': form
+                'insert_me': topics,
               }
     return render(request, 'first_app/index.html', context=my_dict)
 
 
 def form_name_view(request):
-    form = forms.FormName()
-    if request.method == 'POST':
-        form = forms.FormName(request.POST)
-        if form.is_valid():
-            print('Validation Success!')
-            print("NAME: " + form.cleaned_data['name'])
-            print("EMAIL: " + form.cleaned_data['email'])
-            print("ABOUT ME: " + form.cleaned_data['about_me'])
-    return render(request, 'first_app/form_page.html', {'form': form})
+    form = FormName()
 
+    if request.method == "POST":
+        form = FormName(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print('INVALID FORM INPUTS')
+
+    return render(request, 'first_app/form_page.html', {'form': form})

@@ -1,16 +1,9 @@
 from django import forms
+from .models import Topic
 
 
-class FormName(forms.Form):
-    name = forms.CharField()
-    email = forms.EmailField()
-    verify_email = forms.EmailField(label="Enter your email again!")
-    about_me = forms.CharField(widget=forms.Textarea)
+class FormName(forms.ModelForm):
+    class Meta:
+        model = Topic
+        fields = '__all__'
 
-    def clean(self):
-        all_clean_data = super().clean()
-        email = all_clean_data['email']
-        vmail = all_clean_data['verify_email']
-
-        if email != vmail:
-            raise forms.ValidationError("Make Sure Email Match!")
